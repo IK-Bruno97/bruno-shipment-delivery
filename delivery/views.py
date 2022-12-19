@@ -121,7 +121,6 @@ class TrackingView(View):
         if context['has_error']:
             return render(request, 'delivery/home.html', context, status=400)
             
-
     def post(self, request):
         if request.method == "POST":
             tracking = request.POST['tracking']
@@ -130,10 +129,16 @@ class TrackingView(View):
             destination = ship.destination
             package = ship.package
             shipment_time = ship.date.strftime("%w")
+            datestr = ship.date.strftime("%d:%m:%Y")
+            bgdate = datetime.strptime(datestr, "%d:%m:%Y")
+            delivery_date = bgdate + timedelta(days=3)
+            
+
             return render(request, 'delivery/tracking.html', {'name':name,
                 'destination':destination,
                 'package': package,
-                'shipment_time': shipment_time
+                'shipment_time': shipment_time,
+                'delivery_date': delivery_date,
             })
                 
         
