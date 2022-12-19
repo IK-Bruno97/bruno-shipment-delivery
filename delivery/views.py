@@ -5,7 +5,7 @@ import random, math
 from django.utils.encoding import force_bytes, DjangoUnicodeDecodeError
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-import datetime
+from datetime import datetime, timedelta
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from validate_email import validate_email
@@ -121,6 +121,7 @@ class TrackingView(View):
         if context['has_error']:
             return render(request, 'delivery/home.html', context, status=400)
             
+
     def post(self, request):
         if request.method == "POST":
             tracking = request.POST['tracking']
