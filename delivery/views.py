@@ -5,7 +5,7 @@ import random, math
 from django.utils.encoding import force_bytes, DjangoUnicodeDecodeError
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-import datetime
+from datetime import datetime, timedelta
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from validate_email import validate_email
@@ -130,10 +130,16 @@ class TrackingView(View):
             destination = ship.destination
             package = ship.package
             shipment_time = ship.date.strftime("%w")
+            datestr = ship.date.strftime("%d:%m:%Y")
+            bgdate = datetime.strptime(datestr, "%d:%m:%Y")
+            delivery_date = bgdate + timedelta(days=3)
+            
+
             return render(request, 'delivery/tracking.html', {'name':name,
                 'destination':destination,
                 'package': package,
-                'shipment_time': shipment_time
+                'shipment_time': shipment_time,
+                'delivery_date': delivery_date,
             })
                 
         

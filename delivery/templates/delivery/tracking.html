@@ -14,7 +14,7 @@
    
     <p class="greetings"> {{name}} </p>
     <br>
-    <p>Your item({{package}}) is scheduled to arrive {{destination}} on</p>
+    <p>Your item({{package}}) is scheduled to arrive {{destination}} on {{delivery_date}}</p>
     <p>Thank you for shipping with us.</p>
 </div>
 
@@ -64,7 +64,13 @@
         case delivered:
             document.querySelector(".progress-bar").style.width = '100%';
             document.querySelector(".progress-bar").innerHTML = 'Delivered';
+            delivered = true
         
+    }
+
+    if(delivered == true){
+        document.querySelector(".progress-bar").style.width = '100%';
+        document.querySelector(".progress-bar").innerHTML = 'Delivered';
     }
 </script>
 {% endblock %}
