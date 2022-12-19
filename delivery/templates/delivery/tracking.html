@@ -1,0 +1,70 @@
+{% extends 'delivery/layout.html' %}
+{%load static%}
+
+{% block title %}Tracking| {% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+    <h2>Delivery Status</h2> 
+    <div class="progress">
+      <div class="w3-text-black progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <br>
+   
+    <p class="greetings"> {{name}} </p>
+    <br>
+    <p>Your item({{package}}) is scheduled to arrive {{destination}} on</p>
+    <p>Thank you for shipping with us.</p>
+</div>
+
+<script>
+    //datetime
+
+    var theTime = new Date().getHours();
+    // Good morning from 3am to 11am
+    if (theTime >= 3 && theTime <= 11){
+        const greet = "Good morning, "
+        const insert = document.querySelector(".greetings")
+        insert.insertAdjacentText("afterbegin", greet)
+
+    } else if (theTime >= 12 && theTime <= 17){
+        const greet = "Good afternoon, "
+        const insert = document.querySelector(".greetings")
+        insert.insertAdjacentText("afterbegin", greet)
+    } else {
+        const greet = "Good evening, "
+        const insert = document.querySelector(".greetings")
+        insert.insertAdjacentText("afterbegin", greet)
+    }
+    
+</script>
+<script>
+  
+    shipment_date = {{shipment_time}}
+    out_for_delivery = shipment_date
+    transit = shipment_date + 1
+    delivered = shipment_date + 2
+/*
+    if (new Date().getDay() == transit){
+        document.querySelector(".progress-bar").style.width = '10%';
+        document.querySelector(".progress-bar").innerHTML = 'Processing Shipment.';
+    }
+
+*/
+    switch (new Date().getDay()) {
+        case out_for_delivery:
+            document.querySelector(".progress-bar").style.width = '10%';
+            document.querySelector(".progress-bar").innerHTML = 'Processing Shipment.';
+            break
+        case transit:
+            document.querySelector(".progress-bar").style.width = '60%';
+            document.querySelector(".progress-bar").innerHTML = 'On Transit.';
+            break
+        case delivered:
+            document.querySelector(".progress-bar").style.width = '100%';
+            document.querySelector(".progress-bar").innerHTML = 'Delivered';
+        
+    }
+</script>
+{% endblock %}

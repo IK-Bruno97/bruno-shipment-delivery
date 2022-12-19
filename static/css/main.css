@@ -1,0 +1,222 @@
+body, h1, h2, h3, h4, h5, h6, p, span, a, i {font-family: "Montserrat Alternates";}
+
+body, html {
+  height: 100%;
+}
+a{text-decoration: underline; white-space: nowrap;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: underline;}
+
+/* Add styles to the form container */
+.home-container {
+	float: right !important;
+	margin: 20px;
+	
+	padding: 16px;
+	background-color: white;
+	border-radius: 5px;
+}
+  
+/* Full-width input fields */
+.home-input[type=text]{
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border: none;
+	border-bottom: 1px black solid;
+}
+  
+.home-input[type=text]:focus{
+	border-bottom: 2px black solid;
+	outline: none;
+}
+/* Set a style for the submit button */
+.home-btn {
+	background-color: #04AA6D;
+	color: white;
+	padding: 16px 20px;
+	border: none;
+	cursor: pointer;
+	width: 50%;
+	opacity: 0.9;
+	border-radius: 5px;
+}
+.home-btn:hover {
+	opacity: 1;
+}
+.ship-input[type=text]{
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border: none;
+	border-bottom: 1px black solid;
+	background-color: transparent;
+}
+  
+.ship-input[type=text]:focus{
+	border-bottom: 2px green solid;
+	outline: none;
+}
+
+
+/*footer*/
+nav{
+	background-color: #24262b !important;
+	margin: 0 !important;
+}
+.footer-container{
+	max-width: 1170px;
+	margin:auto;
+}
+.footer-row{
+	display: flex;
+	flex-wrap: wrap;
+}
+.footer-ul{
+	list-style: none;
+}
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+/*slideshow icons*/
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: black;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.mySlides {display: none}
+.img {vertical-align: middle;}
+/* Slideshow container */
+.slideshow-container {
+	max-width: 100%;
+	position: relative;
+	margin: auto;
+}
+  
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+  
+.active, .dot:hover {
+	background-color: black;
+}
+  
+/* Fading animation */
+.fade {
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+  
+@keyframes fade {
+	from {opacity: .4} 
+	to {opacity: 1}
+}
+  

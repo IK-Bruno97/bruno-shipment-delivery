@@ -1,0 +1,208 @@
+{% extends 'delivery/layout.html' %}
+{%load static%}
+
+{% block title %}Welcome | {% endblock %}
+
+{% block content %}
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container" id="home">
+    <form method="post" action="{% url 'track-shipment'%}" class="home-container col-sm-4 w3-hide-small">
+      {% csrf_token %}
+      {% include 'partials/_flash_messages.html'%}
+      <span class="material-symbols-outlined">share_location</span>
+      <input class="home-input" type="text" placeholder= "Enter tracking id " name="tracking" value="{{data.tracking}}" required/>
+        
+      <button type="submit" class="home-btn">Track</button>
+    </form>
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+      <span class="w3-jumbo w3-hide-small">Logistics made easy <br>through digital solutions</span><br>
+      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Logistics made easy through digital solutions</span><br>
+      <span class="w3-large">We make it easy to manage your shipments and logistics online. <br>From finding a price and making bookings <br>to submitting documents and tracking cargo.</span>
+      <p><a href="{% url 'shipment'%}" class="w3-button w3-green w3-padding-large w3-large w3-text-black w3-margin-top w3-opacity w3-hover-opacity-off">Create Shipment</a></p>
+    </div> 
+</header>
+
+<div class="w3-container" style="">
+    <h3 class="w3-xxlarge w3-center">Our Shipment Services</h3>
+    <div class="w3-row-padding w3-border" style="margin-top:64px">
+
+      <div class="w3-padding w3-col l3 m3 s10 w3-border-right w3-hide-small w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px; color:#5d781b;' class="w3-center material-symbols-outlined">mail</span>
+            <h5>Documents & Parcels</h5>
+            <p> Domestic and <br>International</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-padding w3-col l3 m3 s10 w3-border-bottom w3-hide-large w3-hide-medium w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px; color:#5d781b;' class="w3-center material-symbols-outlined">mail</span>
+            <h5>Documents & Parcels</h5>
+            <p> Domestic and <i class="fa fa-angle-right"></i> <br>International</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-padding w3-col l2 m2 s10  w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px;color:#5d781b;'  class="w3-center material-symbols-outlined">flight_takeoff</span>
+            <h5>Air Freight</h5>
+            <p> International <br> Same Day</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-padding w3-col l2 m2 s10 w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px;color:#5d781b;' class="w3-center material-symbols-outlined">directions_boat</span>
+            <h5>Ocean Freight</h5>
+            <p> International</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-padding w3-col l2 m2 s10 w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px;color:#5d781b;' class="w3-center material-symbols-outlined">local_shipping</span>
+            <h5>Road Freight</h5>
+            <p> International</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-padding w3-col l2 m2 s10 w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <span style='font-size:70px;color:#5d781b;' class="w3-center material-symbols-outlined">train</span>
+            <h5>Rail Freight</h5>
+            <p> Between Europe and Asia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+<div class="w3-container" style="padding:128px 16px">
+    <h3 class="w3-xxlarge">Logistics Solutions</h3>
+    <p class="w3-large">From the farm to your refrigerator, or the factory to your wardrobe, <br>We are developing solutions that meet customer needs from one end of the supply chain to the other.</p>
+    <a href="" class="w3-button w3-border w3-round-large"> See all solutions </a>
+    <div class="w3-row-padding" style="margin-top:64px">
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-border w3-round-large w3-hover-shadow" style="height:362px;">
+          <img src="{% static 'img/digital-solutions_illustration.svg' %}" alt="John" style="width:100%">
+          <div class="w3-container">
+            <h3>Digital Solutions</h3>
+            <p>Our tailored online services take the complexity out of shipping by letting you instantly book, manage and track shipment, Submit Verified Gross Mass information and much more.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-border w3-round-large w3-hover-shadow" style="height:362px;">
+          <img src="{% static 'img/financial-services.svg'%}"  style="width:100%">
+          <div class="w3-container">
+            <h3>Financial Services</h3>
+            <p>As experts in global integrated logistics, we provide strong financial and compensation solutions to meet your end to end supply chain needs. </p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-border w3-round-large w3-hover-shadow" style="height:362px;">
+          <img src="{% static 'img/logistics.svg'%}" style="width:100%">
+          <div class="w3-container">
+            <h3>Supply Chain & Logistics</h3>
+            <p>We focus on solving your supply chain needs from end to end, taking the complexity out of container shipping for you. <br><br></p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-border w3-round-large w3-hover-shadow" style="height:362px;">
+          <img src="{% static 'img/shipping.webp'%}" style="width:100%">
+          <div class="w3-container">
+            <h3>Transportation Services</h3>
+            <p>Learn more about our shipping services from 300 ports around the world. We can connect your business globally and we make shipping simple. <br></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  
+
+<!--slideshow icons-->
+<div style="margin-left: 38px;" class="w3-container w3-hide-small slideshow-container">
+  <div class="mySlides fade">
+    <div class="w3-col l2 m2"><i style="color: skyblue; font-size:100px" class="img fab fa-react"></i></div>
+    <div class=" w3-col l2 m2"><i style="color: blue; font-size:100px" class="img fab fa-css3-alt"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-amazon"></i></div>
+    <div class=" w3-col l2 m2"><i style="color: yellow; font-size:100px" class="img fab fa-js"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-python"></i></div>
+    <div class=" w3-col l2 m2"><i style="color:red;font-size:100px" class="img fab fa-git"></i></div>
+  </div>
+  
+  <div class="mySlides fade">
+    <div class="w3-col l2 m2"><i style="color: red; font-size:100px" class="img fab fa-html5"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-linux"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-grav"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-github"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-xbox"></i></div>
+    <div class=" w3-col l2 m2"><i style="font-size:100px" class="img fab fa-playstation"></i></div>
+  </div>  
+</div>
+<br>
+
+<div class="w3-hide-small" style="text-align:center">
+  <span class="dot w3-border" onclick="currentSlide(1)"></span> 
+  <span class="dot w3-border" onclick="currentSlide(2)"></span> 
+  <hr>
+</div>
+
+ <!--holiday shipping-->
+  <div class="w3-container" style="padding:128px 16px">
+    <h3 class="w3-xxlarge w3-center">Simplify holiday shipping for you and your customers</h3>
+    <div class="w3-row-padding" style="margin-top:64px">
+      <div class="w3-third w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <div class="w3-center material-symbols-outlined" style='font-size:80px;'> search </div>
+            <h3>See every customer's package in one place</h3>
+            <p>Manage up to 20,000 shipments in your advanced tracking dashboard. View estimated delivery time windows to keep your customers informed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <div class="w3-center">
+         
+          <div class="w3-container">
+            <div class="w3-center material-symbols-outlined" style='font-size:80px;'>acute</div>
+            <h3>Make saving time your new holiday tradition</h3>
+            <p>Let us help lighten your holiday shipping load. Easily schedule a one-time pickup online. Or set up regularly scheduled pickups for recurring shipping needs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <div class="w3-center">
+          <div class="w3-container">
+            <div class="w3-center material-symbols-outlined" style='font-size:80px;'>paid</div>
+            <h3>Spread holiday cheer for less</h3>
+            <p>Choose US for low-cost deliveries to businesses. We are faster to more locations than others.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (new Date().getHours() == 10){
+      console.log('packet received')
+    }
+  </script>
+{% endblock %}

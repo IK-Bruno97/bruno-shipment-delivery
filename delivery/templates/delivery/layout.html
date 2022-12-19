@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <title>{%block title%} {%endblock%} Delivery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/main.css'%}">
+  <style>
+    .bgimg-1 {
+      background-position: center;
+      background-size: cover;
+      background-image: url("{% static "img/maize.jpg" %}");
+      min-height: 100%;
+    }
+    .shipment-form {
+      background-position: center;
+      background-size: cover;
+      background-image:  url("{% static 'img/supply-chain.svg'%}");
+      min-height: 100%;
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 100,
+      'GRAD' -25,
+      'opsz' 48
+    }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <nav style="border-radius:0 !important;" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">DELIVERY</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="">Schedules</a></li>
+            <li><a href="">Support</a></li>
+            <li><a href="{% url 'shipment'%}">Create Shipment</a></li>
+          </ul>
+          <form method="post" class="navbar-form navbar-right" action="{% url 'track-shipment'%}">
+            {% include 'partials/_flash_messages.html'%}
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Track shipment" name="tracking" value="{{data.tracking}}" required/>
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </nav>
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>company</h4>
+                <ul class="footer-ul">
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">schedules</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>get help</h4>
+                <ul class="footer-ul">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">shipping</a></li>
+                    <li><a href="#">returns</a></li>
+                    <li><a href="#">order status</a></li>
+                    <li><a href="#">payment options</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tracking</h4>
+                <ul class="footer-ul">
+                    <li><a href="#">Supply Chain and Logistics</a></li>
+                    <li><a href="#">Transportation Services</a></li>
+                    <li><a href="#">Vessel schedules</a></li>
+                    <li><a href="#">container tracking</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <p class="w3-center w3-text-grey"> Powered by <a href="https://www.ikbruno.online"  target="_blank" class="w3-hover-text-green">Ik-Bruno</a></p>
+</footer>
+
+<script type="text/javascript" src="{% static 'js/main.js'%}"></script>
+</body>
+</html> 

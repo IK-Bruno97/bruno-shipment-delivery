@@ -1,0 +1,1 @@
+web: gunicorn brunodelivery.wsgi --log-file -
