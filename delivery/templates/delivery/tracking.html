@@ -14,7 +14,7 @@
    
     <p class="greetings"> {{name}} </p>
     <br>
-    <p>Your item({{package}}) is scheduled to arrive {{destination}} on {{delivery_date}}</p>
+    <p>Your item({{package}}) is scheduled to arrive {{destination}} on {{delivery_date}}.</p>
     <p>Thank you for shipping with us.</p>
 </div>
 
@@ -41,36 +41,34 @@
 </script>
 <script>
   
-    shipment_date = {{shipment_time}}
-    out_for_delivery = shipment_date
-    transit = shipment_date + 1
-    delivered = shipment_date + 2
-/*
-    if (new Date().getDay() == transit){
-        document.querySelector(".progress-bar").style.width = '10%';
-        document.querySelector(".progress-bar").innerHTML = 'Processing Shipment.';
-    }
+    shipment_day = {{shipment_day}}
+    shipment_month = {{shipment_month}}
+    shipment_year = {{shipment_year}}
+    d = new Date()
 
-*/
-    switch (new Date().getDay()) {
-        case out_for_delivery:
+    out_for_delivery = shipment_day
+    transit = shipment_day + 1
+    delivered = shipment_day + 2
+    var is_delivered = false
+
+    if(d.getMonth()+1 ==shipment_month && d.getFullYear()==shipment_year && d.getDay()==shipment_day ){
+        if(d.getDay() == out_for_delivery ){
             document.querySelector(".progress-bar").style.width = '10%';
             document.querySelector(".progress-bar").innerHTML = 'Processing Shipment.';
-            break
-        case transit:
+        } else if(d.getDay() == transit){
             document.querySelector(".progress-bar").style.width = '60%';
             document.querySelector(".progress-bar").innerHTML = 'On Transit.';
-            break
-        case delivered:
+        } else if(d.getDay() == delivered){
             document.querySelector(".progress-bar").style.width = '100%';
             document.querySelector(".progress-bar").innerHTML = 'Delivered';
-            delivered = true
-        
+        }
+    } else{
+        is_delivered = true
     }
 
-    if(delivered == true){
+    if(is_delivered){
         document.querySelector(".progress-bar").style.width = '100%';
-        document.querySelector(".progress-bar").innerHTML = 'Delivered';
+        document.querySelector(".progress-bar").innerHTML = 'Your shipment is delivered!';
     }
 </script>
 {% endblock %}

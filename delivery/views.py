@@ -125,21 +125,28 @@ class TrackingView(View):
     def post(self, request):
         if request.method == "POST":
             tracking = request.POST['tracking']
-            ship = Shipment.objects.get(tracking_number=tracking)
-            name = ship.full_name
-            destination = ship.destination
-            package = ship.package
-            shipment_time = ship.date.strftime("%w")
-            datestr = ship.date.strftime("%d:%m:%Y")
-            bgdate = datetime.strptime(datestr, "%d:%m:%Y")
-            delivery_date = bgdate + timedelta(days=3)
-            
+            try:
+                ship = Shipment.objects.get(tracking_number=tracking)
+                name = ship.full_name
+                destination = ship.destination
+                package = ship.package
+                shipment_day = ship.date.strftime("%w")
+                shipment_month = ship.date.strftime("%m")
+                shipment_year = ship.date.strftime("%Y")
 
-            return render(request, 'delivery/tracking.html', {'name':name,
-                'destination':destination,
-                'package': package,
-                'shipment_time': shipment_time,
-                'delivery_date': delivery_date,
-            })
+                datestr = ship.date.strftime("%d:%m:%Y")
+                bgdate = datetime.strptime(datestr, "%d:%m:%Y")
+                delivery_date = bgdate + timedelta(days=2)
                 
+                return render(request, 'delivery/tracking.html', {'name':name,
+                    'destination':destination,
+                    'package': package,
+                    'shipment_day': shipment_day,
+                    'shipment_month': shipment_month,
+                    'shipment_year': shipment_year,
+                    'delivery_date': delivery_date,
+                })
+            except Exception as identifier:
+                return render(request, "delivery/home.html", {"message": "Invalid tracking id!"})
+    
         
