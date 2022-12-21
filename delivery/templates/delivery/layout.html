@@ -51,6 +51,9 @@
           <form method="post" class="navbar-form navbar-right" action="{% url 'track-shipment'%}">
             {% include 'partials/_flash_messages.html'%}
             {% csrf_token %}
+            {% if message %}
+              <p class="w3-text-red"> {{message}} </p>  
+            {% endif %}
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Track shipment" name="tracking" value="{{data.tracking}}" required/>
               <div class="input-group-btn">
