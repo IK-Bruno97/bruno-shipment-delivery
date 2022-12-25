@@ -42,28 +42,32 @@
 <script>
   
     shipment_day = {{shipment_day}}
+    shipment_date = {{shipment_date}}
     shipment_month = {{shipment_month}}
     shipment_year = {{shipment_year}}
     d = new Date()
 
     out_for_delivery = shipment_day
-    transit = shipment_day + 1
-    delivered = shipment_day + 2
+    transit = shipment_date + 1
+    delivered = shipment_date + 2
     var is_delivered = false
 
-    if(d.getMonth()+1 ==shipment_month && d.getFullYear()==shipment_year && d.getDay()==shipment_day ){
-        if(d.getDay() == out_for_delivery ){
+    if(d.getMonth()+1 ==shipment_month && d.getFullYear()==shipment_year){
+        if(d.getDate() == shipment_date){
             document.querySelector(".progress-bar").style.width = '10%';
             document.querySelector(".progress-bar").innerHTML = 'Processing Shipment.';
-        } else if(d.getDay() == transit){
+        } else if(d.getDate() == transit){
             document.querySelector(".progress-bar").style.width = '60%';
             document.querySelector(".progress-bar").innerHTML = 'On Transit.';
-        } else if(d.getDay() == delivered){
+        } else if(d.getDate() == delivered){
             document.querySelector(".progress-bar").style.width = '100%';
             document.querySelector(".progress-bar").innerHTML = 'Delivered';
+        }else{
+            is_delivered = true
         }
     } else{
-        is_delivered = true
+        document.querySelector(".progress-bar").style.width = '100%';
+        document.querySelector(".progress-bar").innerHTML = 'Your shipment is delivered!';
     }
 
     if(is_delivered){

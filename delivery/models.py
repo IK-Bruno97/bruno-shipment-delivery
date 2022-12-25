@@ -10,7 +10,7 @@ class Shipment(models.Model):
     origin = models.CharField(max_length=100, null=True, blank=False)
     destination = models.CharField(max_length=100, null=True, blank=False)
     weight = models.DecimalField(max_digits=10, decimal_places=2 ,null=False, blank=False)
-    tracking_number = models.CharField(max_length=10, null=False, blank=False)
+    tracking_number = models.CharField(max_length=10, null=False, blank=False, unique=True)
 
     def __str__(self):
         return self.email+ ". Item to ship:" +self.package 
