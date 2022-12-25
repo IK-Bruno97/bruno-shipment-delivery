@@ -11,8 +11,12 @@ from django.core.mail import EmailMessage
 from validate_email import validate_email
 from django.contrib import messages
 from .models import Shipment
+
+#from django.views.decorators.cache import cache_page
+
 # Create your views here.
 
+#@cache_page(60 * 15)
 def home(request):
     return render(request, 'delivery/home.html')
 
@@ -131,6 +135,7 @@ class TrackingView(View):
                 destination = ship.destination
                 package = ship.package
                 shipment_day = ship.date.strftime("%w")
+                shipment_date = ship.date.strftime("%d")
                 shipment_month = ship.date.strftime("%m")
                 shipment_year = ship.date.strftime("%Y")
 
@@ -141,6 +146,7 @@ class TrackingView(View):
                 return render(request, 'delivery/tracking.html', {'name':name,
                     'destination':destination,
                     'package': package,
+                    'shipment_date': shipment_date,
                     'shipment_day': shipment_day,
                     'shipment_month': shipment_month,
                     'shipment_year': shipment_year,
@@ -148,5 +154,5 @@ class TrackingView(View):
                 })
             except Exception as identifier:
                 return render(request, "delivery/home.html", {"message": "Invalid tracking id!"})
-    
+                #logger.critical('AN ISSUE OCCURED. FIND OUT NOW!!')
         
