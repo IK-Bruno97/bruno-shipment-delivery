@@ -7,19 +7,22 @@
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
-    <form method="post" action="{% url 'track-shipment'%}" class="home-container col-sm-4 w3-hide-small">
+    <form method="post" action="{% url 'track-shipment'%}" class="home-container col-sm-4 w3-hide-medium w3-hide-small">
       {% csrf_token %}
       {% include 'partials/_flash_messages.html'%}
       <span class="material-symbols-outlined">share_location</span>
+      {% if message %}
+        <p class="w3-text-red"> {{message}} </p>  
+      {% endif %}
       <input class="home-input" type="text" placeholder= "Enter tracking id " name="tracking" value="{{data.tracking}}" required/>
         
       <button type="submit" class="home-btn">Track</button>
     </form>
     <div class="w3-display-left w3-text-white" style="padding:48px">
-      <span class="w3-jumbo w3-hide-small">Logistics made easy <br>through digital solutions</span><br>
-      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Logistics made easy through digital solutions</span><br>
+      <span class="w3-jumbo w3-hide-medium w3-hide-small">Logistics made easy <br>through digital solutions</span><br>
+      <span class="w3-xxlarge w3-hide-large">Logistics made easy through digital solutions</span><br>
       <span class="w3-large">We make it easy to manage your shipments and logistics online. <br>From finding a price and making bookings <br>to submitting documents and tracking cargo.</span>
-      <p><a href="{% url 'shipment'%}" class="w3-button w3-green w3-padding-large w3-large w3-text-black w3-margin-top w3-opacity w3-hover-opacity-off">Create Shipment</a></p>
+      <p><a href="{% url 'shipment'%}" class="w3-button w3-border w3-round-large w3-green w3-padding-large w3-large w3-text-black w3-margin-top w3-opacity w3-hover-opacity-off">Create Shipment</a></p>
     </div> 
 </header>
 
