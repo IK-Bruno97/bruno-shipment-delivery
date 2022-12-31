@@ -62,17 +62,14 @@
         } else if(d.getDate() == delivered){
             document.querySelector(".progress-bar").style.width = '100%';
             document.querySelector(".progress-bar").innerHTML = 'Delivered';
-        }else{
+        } else{
             is_delivered = true
         }
-    } else{
-        document.querySelector(".progress-bar").style.width = '100%';
-        document.querySelector(".progress-bar").innerHTML = 'Your shipment is delivered!';
-    }
+    } 
 
     if(is_delivered){
         document.querySelector(".progress-bar").style.width = '100%';
-        document.querySelector(".progress-bar").innerHTML = 'Your shipment is delivered!';
+        document.querySelector(".progress-bar").innerHTML = 'Your shipment was delivered!';
     }
 </script>
 {% endblock %}

@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['web-production-47e2.up.railway.app', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://web-production-47e2.up.railway.app',]
 
-ADMINS=[("ikbruno", "edom.ik.bruno@gmail.com"), ("dave", 'davenewton069@gmail.com') ]
+ADMINS = [("ikbruno", "edom.ik.bruno@gmail.com"), ("dave", 'davenewton069@gmail.com') ]
 
 
 # Application definition
@@ -90,15 +90,17 @@ DATABASES = {
     }
 }
 
+"""
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        #'LOCATION': 'unique.'
+        #'LOCATION': ''
     }
 }
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 900
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -154,6 +156,18 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
 
+#EMAIL_SUBJECT_PREFIX = '[DJANGO] '
+SECURE_HSTS_SECONDS = 30
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTPS_X_FORWARDED_PROTO", "https")
+SECURE_REFERER_POLICY= 'strict-origin-when-cross-origin'
+#MIDDLEWARE += ['csp.middleware.CSPMiddleware']
+
+#CSP_STYLE_SOURCE = ["'self", "all esternal src links"]
+#CPS_IMG_SRC = ["'self", "all esternal src links"]
+#CPS_SCRIPT_SRC =["'self", "all esternal src links"]
+
 """
 LOGGING = {
     'version': 1,
@@ -182,11 +196,13 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'general.log',
         },
     },
+    
+    
     'loggers': {
         'django': {
             'handlers': ['file'],
@@ -195,5 +211,58 @@ LOGGING = {
             'propagate': True,
         },
     },
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'special': {
+            '()': 'project.logging.SpecialFilter',
+            'foo': 'bar',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['special']
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'myproject.custom': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+            'filters': ['special']
+        }
+    }
 }
 """
