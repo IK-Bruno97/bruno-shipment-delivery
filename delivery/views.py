@@ -154,5 +154,5 @@ class TrackingView(View):
                 })
             except Exception as identifier:
                 return render(request, "delivery/home.html", {"message": "Invalid tracking id!"})
-                #logger.critical('AN ISSUE OCCURED. FIND OUT NOW!!')
+               
         
