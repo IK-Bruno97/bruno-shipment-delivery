@@ -93,8 +93,23 @@ DATABASES = {
 """
 CACHES = {
     'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache', 
+    },
+    'file': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache'
+    },
+    # 'memcache': {
+    #     'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+    #     'LOCATION': '127.0.0.1:11211',
+    # },
+    'database': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    },
+    'localmemory': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        #'LOCATION': ''
+        'LOCATION': 'unique-snowflake',
     }
 }
 CACHE_MIDDLEWARE_ALIAS = 'default'
