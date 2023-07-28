@@ -27,8 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['web-production-47e2.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://web-production-47e2.up.railway.app',]
+ALLOWED_HOSTS = ['web-production-a39b.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-a39b.up.railway.app',]
 
 ADMINS = [("ikbruno", "edom.ik.bruno@gmail.com")]
 
